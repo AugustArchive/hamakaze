@@ -8,8 +8,9 @@ import org.json.JSONObject;
 
 @IService(enabled = false)
 public class BotsOnDiscord implements Service {
-    public void run(RequestFactory http, JDA api) {
-        JSONObject awau = new JSONObject()
-                .put("server_count", api.getGuilds().size());
+    public void run(JDA api) {
+        JSONObject json = new JSONObject().put("server_count", api.getGuilds().size());
+        RequestFactory
+                .post("https://bots.ondiscord.xyz/bot-api/bots/")
     }
 }

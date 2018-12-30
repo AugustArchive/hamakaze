@@ -1,0 +1,30 @@
+plugins {
+    id 'java'
+    id 'application'
+    id 'com.github.johnrengelman.shadow' version '2.0.4'
+}
+
+group 'xyz.auguwu'
+version '1.0.0'
+sourceCompatibility = 1.8
+mainClassName = 'xyz.auguwu.hamakaze.bot.Hamakaze'
+shadowJar.archiveName = 'Hamakaze.jar'
+
+repositories {
+    jcenter()
+    mavenCentral()
+}
+
+dependencies {
+    compile 'net.dv8tion:JDA:3.8.1_450'
+    compile 'com.sedmelluq:lavaplayer:1.3.10'
+    compile 'com.sedmelluq:jda-nas:1.0.6'
+    compile "com.squareup.okhttp3:okhttp:3.12.0"
+    compile 'org.postgresql:postgresql:42.2.2'
+    compile 'com.zaxxer:HikariCP:3.2.0'
+    compile group: 'ch.qos.logback', name: 'logback-classic', version: '1.1.3'
+}
+
+compileJava {
+    options.encoding = 'UTF-8'
+}

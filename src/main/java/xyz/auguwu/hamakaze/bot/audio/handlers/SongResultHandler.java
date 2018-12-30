@@ -1,5 +1,6 @@
 package xyz.auguwu.hamakaze.bot.audio.handlers;
 
+import xyz.auguwu.hamakaze.bot.Hamakaze;
 import com.sedmelluq.discord.lavaplayer.player.AudioLoadResultHandler;
 import com.sedmelluq.discord.lavaplayer.track.AudioTrack;
 import com.sedmelluq.discord.lavaplayer.track.AudioPlaylist;
@@ -19,14 +20,14 @@ public class SongResultHandler implements AudioLoadResultHandler {
                 .sendMessage(":informational_source: **|** Enqueued: `" + t.getInfo().title + "`.")
                 .queue();
         t.setUserData(event.getAuthor());
-        // Hamakaze.getAudioVoiceHandler().enqueueTrack(t, event);
+        Hamakaze.getInstance().getAudioHandler().enqueueTrack(t, event);
     }
 
     @Override
     public void playlistLoaded(AudioPlaylist playlist) {
         event.getChannel().sendMessage(":warning: **|** Found **" + playlist.getTracks().size() + "** songs! Enqueueing...").queue((m) -> {
             for (AudioTrack t: playlist.getTracks()) {
-                // Hamakaze.getAudioVoiceHandler().enqueueTrack(t, event);
+                Hamakaze.getInstance().getAudioHandler().enqueueTrack(t, event);
             }
             m.editMessage(":ok_hand: **|** Admiral, all " + playlist.getTracks().size() + " songs were added to the queue.").queue();
         });

@@ -20,6 +20,7 @@ import xyz.auguwu.hamakaze.bot.audio.GuildMusicManager;
 import xyz.auguwu.hamakaze.bot.core.listeners.*;
 import xyz.auguwu.hamakaze.bot.core.managers.CommandManager;
 import xyz.auguwu.hamakaze.bot.core.managers.ServiceManager;
+import xyz.auguwu.hamakaze.bot.audio.handlers.AudioVoiceHandler;
 import org.slf4j.*;
 
 import java.io.FileReader;
@@ -34,7 +35,8 @@ public class Hamakaze {
     public HashMap<String, GuildMusicManager> players = new HashMap<>();
     public Properties config;
     public CommandManager manager = new CommandManager();
-    public ServiceManager services = new ServiceManager();
+    public ServiceManager services = new ServiceManager(this);
+    public AudioVoiceHandler audioHandler = new AudioVoiceHandler();
 
     public Hamakaze() throws Exception {
         instance = this;
@@ -81,5 +83,8 @@ public class Hamakaze {
     }
     public CommandManager getCommandManager() {
         return manager;
+    }
+    public AudioVoiceHandler getAudioHandler() {
+        return audioHandler;
     }
 }
